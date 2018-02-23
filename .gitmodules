@@ -1,0 +1,3 @@
+[submodule "CBWFQ"]
+	path = CBWFQ
+	url = https://github.com/RehMaar/CBWFQ
