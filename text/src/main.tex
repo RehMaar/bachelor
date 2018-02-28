@@ -9,7 +9,19 @@
 \usepackage{listings,a4wide,longtable,amsmath,amsfonts,graphicx}
 \usepackage{tabularx}
 
+\usepackage{listings}
+\lstset{
+    basicstyle=\small\ttfamily, % Размер и тип шрифта
+    breaklines=true, % Перенос строк
+    tabsize=2, % Размер табуляции
+    literate={--}{{-{}-}}2, % Корректно отображать двойной дефис
+    captionpos=b
+}
+
+% Borders
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+% Fonts
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
 \pagestyle{empty} 
