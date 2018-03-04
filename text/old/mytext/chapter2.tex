@@ -1,0 +1,83 @@
+% Сравнительный анализ алгоритмов qdisc
+	\subsection{Дисциплины обслуживания очередей}
+
+		%Понятие ДО. Зачем они и где они.обработки
+		\textbf{Дисциплина обслуживания очередй (queuing discipline, qdisc)} -- это алгоритм выбора и обработки пакета
+		из очереди пакетов, где под очередью подразумевается буфер пакетов. \\
+		
+%		ДО делятся на \textbf{приоритетные} и \textbf{бесприоритетные} и \textbf{классовые} и \textbf{бесклассовые}.
+		ДО бывают следующих видов.
+		\begin{description}
+			\item[Приоритетные] -- ДО, которые назначают для разных видов трафика 
+			\item[Бесприоритетные] -- ДО, которые не приоретизируют трафик. К таким ДО относится, к примеру, fifo.
+			\item[Классовые]
+			\item[Бесклассовые]
+		\end{description}
+
+
+	\subsection{Алгоритмы, реализованные в ядре Linux}
+
+			\subsection{Бесклассовые алгоритмы (Classless)}
+				\begin{itemize}
+					\item \textbf{CODEL} (controlled-delay active queue management)
+					\item \textbf{FIFO} (first in first out)
+					\item \textbf{FQ} (fair queue)
+					\item \textbf{RED} (random earky detection)
+					\item \textbf{SFB} (stochastic fair blue)
+				\end{itemize}
+
+			\subsection{Классовые алгоритмы (Classful)}
+				\begin{itemize}
+               		\item CBQ (class based queueing) -- обработка пакетов в очередях 
+               		\item HFSC (heirarchy fair service curve's control) --
+               		\item HTB  (heirarchy token bucket) -- 
+				\end{itemize}
+			
+
+%
+%	\subsection{Методы управления трафиком в Linux}
+%
+%		Под управлением трафиком подразумевают набор механизов и операций, с помощью которого пакеты организовывают в очередь
+%		для приёма/передачи через сетевой интерфейс; термин включает в себя механизмы принятия решений, какие пакеты принимать и
+%		с какой скоростью на входящем интерфейсе, определения пакетов для передачи, их порядка и скорость передачи на исходящем устройстве.[1]
+%
+%		Рассказать, как решают проблемы с узкими местами
+%		в маршруте трафика.
+
+
+
+%
+%	\subsection{Обзор существующих ДО в ядре Linux}
+%
+%		Какие есть, где используются, почему нужно ещё.
+%
+%        CLASSLESS
+%        	* codel -- controlled-delay activa queue management
+%        	* fifo	-- 
+%        	* fq	-- fair queue
+%        	* red   -- random earky detection 
+%        	* sfb	-- stochastic fair blue 
+%
+%        CLASSFUL
+%        	* cbq	-- class based queueing 
+%        	* hfsc	-- heirarchy fair service curve's control under linux
+%        	* htb	-- heirarchy token bucket
+%
+%	\subsection{Обоснование выбора}
+%
+%		Описать идею алгоритма CBWFQ
+%
+%		CBWFQ -- комбинация CBQ и WFQ
+%
+%		Описать приятности CBWFQ.
+%
+%	\subsection{Выводы}
+%
+%		Так как я не могу найти непосредственное описнание
+%		алгоритма, придумаю его на основании всего того, что слышу.
+%
+%
+%	\subsection{Список использованной литературы}
+%		\begin{enumerate}
+%			\item http://computerlib.narod.ru/html/traffic.htm, дата обращения 10-12-2017
+%		\end{enumerate}

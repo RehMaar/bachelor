@@ -2,7 +2,7 @@ PDFDIR=pdf
 SRCDIR=src
 
 LATEX=xelatex
-FLAGS=-output-directory $(PDFDIR)
+FLAGS=-output-directory $(PDFDIR) -output-driver=xdvipdfmx
 
 
 all:

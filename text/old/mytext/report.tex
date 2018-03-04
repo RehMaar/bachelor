@@ -1,0 +1,46 @@
+\documentclass[14pt] {ncc}
+\usepackage[utf8] {inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian] {babel}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{listings,longtable,amsmath,amsfonts,graphicx}
+\usepackage{indentfirst}
+\usepackage{bytefield}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{tabularx}
+
+\linespread{1.3}
+
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\begin{document}
+
+% Введение
+%	\input{intro.tex}
+
+% Глава 1
+\section{Постановка задачи, обзор существующей литературе по теме}
+	\input{chapter1.tex}
+
+% Глава 2
+\section{Сравнительный анализ алгоритмов qdisc}
+	\input{chapter2.tex}
+
+\section{Формальное описание выбранного алгоритма и его реализация}
+
+\section{Заключение}
+
+\section{Список использованной литературы}
+	\begin{enumerate}
+		\item Шринивас Вегешна, Качество обслуживания в сетях IP, 2003
+		\item Иван Песин, Повесть о Linux и управлении трафиком, \\ http://computerlib.narod.ru/html/traffic.htm
+	\end{enumerate}
+
+
+
+\end{document}
