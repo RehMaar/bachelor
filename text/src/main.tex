@@ -1,16 +1,33 @@
-\documentclass[14pt, a4paper] {ncc}
+\documentclass[14pt, a4paper] {extarticle}
 \usepackage[utf8] {inputenc}
 \usepackage[T2A]{fontenc}
 \usepackage[english, russian] {babel}
 \usepackage[usenames,dvipsnames]{xcolor}
+
+% Для вставки фигур
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{listings,a4wide,longtable,amsmath,amsfonts}
+
+\usepackage{a4wide,longtable,amsmath,amsfonts}
+
+% Таблицы
 \usepackage{tabularx}
+
+%Псевдокод
 \usepackage{algpseudocode}
+
+% Гиперссылки
 \usepackage{hyperref}
 
+% Рисунки
+\usepackage{graphics}
+
+
+% Для поиска и копипасти
+\usepackage{cmap}
+
+% Код
 \usepackage{listings}
 \lstset{
     basicstyle=\small\ttfamily, % Размер и тип шрифта
@@ -21,32 +38,79 @@
 }
 
 % Borders
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+% Правильные поля для диплома
+\usepackage[top=20mm, bottom=20mm, left=25mm, right=10mm]{geometry}
 
-% Fonts
-\usepackage{fontspec}
-\setmainfont{Times New Roman}
-\pagestyle{empty} 
-\usepackage{setspace}
-\singlespacing
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
+\setlist[itemize]{itemsep=0ex}
 
+% Полуторный межстрочный интервал 
+\usepackage[nodisplayskipstretch]{setspace}
+\onehalfspacing
+
+% Times New Roman
+\usepackage{pscyr}
+\renewcommand{\rmdefault}{ftm}
 
 \captionsetup{compatibility=false}
 
+% Каждый пунтк оглавления с отточием
+\usepackage{titletoc}
+
+% Абзацный отступ равен 1.25 см
+\parindent=1.25cm
+
+% Номер страницы по середине верхнего поля
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Добавить абзацный отступ для первых абзацев в section/subsection,
+% по умолчанию не добавляется
+\usepackage{indentfirst}
+
+% Обязательно переносить слова, чтобы соблюсти поля документа. Для
+% соблюдения полей можно пренебречь правилами для тех слов и
+% словосочетаний, о которых не знают словаря переносов (ruhyphen или
+% ruenhyph). Оно почему-то работает. Взято с:
+%
+%   http://www.latex-community.org/forum/viewtopic.php?p=70342#p70342
+%
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\vfuzz \hfuzz
+\raggedbottom
+
+
+\addto\captionsrussian{
+% подпись "Рисунок" вместо "Рис"
+  \def\figurename{{Рисунок}}
+% "Оглавление" вместо "Содержание"
+%  \def\figurename{{Оглавление}}
+}
 
 \begin{document}
+\setcounter{figure}{0}
 
 	% Введение
 	%\input{src/intro.tex}
 
-	% Chapter 1
-	\input{src/chapter_1.tex}
+	% Chapter 1: сревнение с другими штуками
+	\newpage
+	\input{src/qdisc-descr.tex}
 
-	% Chapter 2
+	% Chapter 2: исследование CBWFQ в системах моделирования
 	%\input{src/chapter_2.tex}
 
-	% Chapter 3
-	\input{src/chapter_3.tex}
+	% Chapter 3: описание реализации
+	\newpage
+	\input{src/implement.tex}
 
 	% Заключение
 	%\input{src/concl.tex}
@@ -54,4 +118,5 @@
 	% Список литературы
 	% TODO: bibtex
 
+	% Апендикс ? 
 \end{document}
