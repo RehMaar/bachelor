@@ -62,10 +62,14 @@
 
 	Каждый интерфейс имеет корневую дисцплину (по умолчанию pfast\_fifo), которой
 	назначается идентификатор (handle), который используется для обращения к дисциплине.
-	Этот идентификатор состоит из двух частей: мажорной и минорной; мажорная
+	Этот идентификатор состоит из двух частей: мажорной (MAJ) и минорной (MIN); мажорная
 	часть определяет родителя, минорная -- непосредственно класс.
 
-	[рисунок]
+	\begin{figure}[ht!]
+		\centering
+		\includegraphics{./src/pdfimages/class_hierh.pdf}
+		\caption{Схема классовой иерархии с использованием идентификаторов MAJ:MIN}
+	\end{figure}
 
 	[Возможно, сделать небольшой вывод по описанному и связать его со следующим абзацем.]
 
@@ -146,11 +150,11 @@
 					\State {//Так как мехнизмы довольно схожи, их вычисление можно объединить.}
     				\If {$\text{q.count} < \text{HQO} \land \text{q.count} < \text{CDT}$}
         				\State \Call{qdisc\_enqueue}{q, pkt}
-					\ElsIf {pkt.time has the worst finish time}
+					\ElsIf {pkt.size is the biggest}
 						\State \Call{qdisc\_drop}{pkt}
 					\Else
 						\If {q.count $>$ HQO }
-							\State {$\text{p}_1 \gets \text{get\_worst\_finish\_time(q)}$}
+							\State {$\text{p}_1 \gets \text{get\_biggest\_size(q)}$}
 							\State \Call {qdisc\_drop}{p$_1$}
 						\EndIf
 							\State \Call {qdisc\_enqueue}{q, pkt}
