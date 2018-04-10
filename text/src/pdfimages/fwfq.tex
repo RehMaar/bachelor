@@ -6,7 +6,15 @@
 % Times New Roman
 \usepackage{pscyr}
 \renewcommand{\rmdefault}{ftm}
+\usetikzlibrary{arrows,decorations.markings}
 
+
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
 \begin{document}
 
 	\begin{tikzpicture}
@@ -39,17 +47,17 @@
 		\draw[fill=yellow] (3.1, 0.5) rectangle (3.2, 1);
 		\draw[fill=yellow] (3.3, 0.5) rectangle (3.8, 1);
 
-		\draw[->] (4, 3.75) to (4.7, 3.75);
-		\draw[->] (4, 2.75) to (4.7, 2.75);
-		\draw[->] (4, 1.75) to (4.7, 1.75);
-		\draw[->] (4, 0.75) to (4.7, 0.75);
+		\draw[vecArrow] (4, 3.75) to (4.7, 3.75);
+		\draw[vecArrow] (4, 2.75) to (4.7, 2.75);
+		\draw[vecArrow] (4, 1.75) to (4.7, 1.75);
+		\draw[vecArrow] (4, 0.75) to (4.7, 0.75);
 
 		% Classifier
 		\draw (4.7,0.3) rectangle (5.7, 4.3) node[pos=.5] {};
-		\draw[->] (5.7, 3.75) to (6.4, 3.75);
-		\draw[->] (5.7, 2.75) to (6.4, 2.75);
-		\draw[->] (5.7, 1.75) to (6.4, 1.75);
-		\draw[->] (5.7, 0.75) to (6.4, 0.75);
+		\draw[vecArrow] (5.7, 3.75) to (6.4, 3.75);
+		\draw[vecArrow] (5.7, 2.75) to (6.4, 2.75);
+		\draw[vecArrow] (5.7, 1.75) to (6.4, 1.75);
+		\draw[vecArrow] (5.7, 0.75) to (6.4, 0.75);
 
 		% Flow 1
 		\draw (6.4, 3.5) rectangle (9.2, 4) node[above left] {Очередь 1};
@@ -79,10 +87,10 @@
 		\draw[fill=yellow] (8.4, 0.5) rectangle (8.5, 1);
 		\draw[fill=yellow] (8.6, 0.5) rectangle (9.1, 1);
 
-		\draw[->] (9.2, 3.75) to (10, 3.75);
-		\draw[->] (9.2, 2.75) to (10, 2.75);
-		\draw[->] (9.2, 1.75) to (10, 1.75);
-		\draw[->] (9.2, 0.75) to (10, 0.75);
+		\draw[vecArrow] (9.2, 3.75) to (10, 3.75);
+		\draw[vecArrow] (9.2, 2.75) to (10, 2.75);
+		\draw[vecArrow] (9.2, 1.75) to (10, 1.75);
+		\draw[vecArrow] (9.2, 0.75) to (10, 0.75);
 
 		\draw (10,0.3) rectangle (11, 4.3) node[pos=.5] {WFQ};
 
@@ -90,7 +98,7 @@
 		\draw (12, 1.8) rectangle (13, 2.8) node[above left] {Выход};
 		\draw[fill=blue] (12.5, 1.8) rectangle (12.6, 2.8);
 
-		\draw[->] (11, 2.3) to (12, 2.3);
+		\draw[vecArrow] (11, 2.3) to (12, 2.3);
 
 		\node[rotate=90] at (5.2, 2.4) {Отбрасывание WFQ};
 	\end{tikzpicture}
