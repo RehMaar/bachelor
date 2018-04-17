@@ -115,11 +115,11 @@
 
 
 	\begin{center}
-        {\footnotesize
+        {\scriptsize
             \begin{multicols}{2}
 				{\bf Преимущества}
 				\begin{itemize}
-					\item Разделение канала.						  
+					\item Использование механизма разделения канала (link-sharing).						  
 					\item Решение проблемы застоя канала.
 				\end{itemize}
             \columnbreak
@@ -128,6 +128,7 @@
 					\item Честное выделение канала только для пакетов сравнительно одинакового размера.
 					\item Слабо оптимизирована для большинства типичных ситуаций.
 					\item Сложность реализации.
+					%\item Вместо определения объема трафика, считает время между запросами, на основе чего рассчитывается средняя загруженность канала.
 				\end{itemize}
             \end{multicols}
         }
@@ -163,15 +164,16 @@
             \columnbreak
 				{\bf Недостатки}
 				\begin{itemize}
-					\item Честное выделение канала только для пакетов сравнительно одинакового размера.
-					\item Сложность реализации.
+					\item Сложность конфигурации.
+					\item Медленее CBQ.
+					\item Проблемы с точностью.
 				\end{itemize}
             \end{multicols}
     }
 	\end{center}
 \end{frame}
 
-\begin{frame}{HFSC}
+\begin{frame}{Hierarchical fair-service curve}
 
 \begin{figure}
   \begin{subfigure}[b]{0.3\textwidth}
@@ -186,7 +188,6 @@
     \label{fig:f2}
   \end{subfigure}
 \end{figure}
-
 
 	\begin{center}
     {\footnotesize
@@ -242,7 +243,7 @@
 				{\bf Преимущества}
 				\begin{itemize}
 					\item Простая конфигурация.
-					\item Гарантированная полоса пропускания для всех потоков.
+					%\item Гарантированная минимальная полоса пропускания для всех потоков.
 					\item Отбрасывание пакетов из агрессивных потоков.
 					\item Честное обслуживание.
 				\end{itemize}
@@ -292,11 +293,12 @@
 {\bf      Отбрасывание           }&{\scriptsize  TD   }&{\scriptsize  TD    }&{\scriptsize  TD    }&{\scriptsize  TD    }&{\scriptsize  ED/AD }&{\scriptsize  TD/WRED }\\ \hline
 {\bf \mc{Разделение\\ канала}    }& -    &  +    &  +    &  +    &  -    &  -    \\ \hline
 {\bf \mc{Сложность \\ реализации}}& {\scriptsize Низкая }& {\scriptsize Высокая     }&  {\scriptsize Средняя    }&  {\scriptsize Высокая    }&   {\scriptsize Средняя   }&  {\scriptsize Средняя}\\ \hline
+{\bf \mc{Конфигурация\\ классов}}		  & -  & + & + & + & - & + \\ \hline
+{\bf \mc{Реализация\\ в Linux}}   & + & + & + & + & - & -  \\ \hline
     \end{tabular}
 }
-
 {\scriptsize
-	Обозначения:\\
+	Обозначения:
 	 RR -- Round Robin, RT/LS -- на основе Real Time/Link Sharing критериев.\\
 	 TD -- Tail Drop, ED -- Early Dropping, ED -- Aggressive Dropping.
 }
@@ -344,9 +346,10 @@ tc filter add dev ens3 parent 1: protocol ip\
 \begin{frame}{Вывод}
 	\begin{itemize}
 		\item Проведён сравнительный анализ классовых дисциплин обслуживания.
-		\item Проведено исследование модели WFQ в среде Anylogic.
+		\item Проведено исследование модели WFQ.
 		\item Реализован интерфейс для системы tc.
 		\item Реализован алгоритм CBWFQ в ядре Linux.
+		\item Перспектива развития работы: реализация дисциплины LLQ.
 	\end{itemize}
 \end{frame}
 
