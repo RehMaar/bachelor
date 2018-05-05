@@ -1,0 +1,153 @@
+\documentclass[14pt, a4paper] {extarticle}
+\usepackage[utf8] {inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian] {babel}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+
+\usepackage{a4wide,longtable,amsmath,amsfonts,tikz}
+% Таблицы
+\usepackage{tabularx}
+%Псевдокод
+\usepackage{algpseudocode}
+% Гиперссылки
+\usepackage{hyperref}
+% Рисунки
+\usepackage{graphics}
+% Для поиска и копипасти
+\usepackage{cmap}
+% Возможность переопределять оглавление и его стиль
+\usepackage{tocloft}
+\usepackage{etoolbox}
+% Для вставки фигур
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{emdash}{ --- }
+\captionsetup{labelsep=emdash}
+\captionsetup{compatibility=false}
+
+% Правильные поля для диплома
+\usepackage[top=20mm, bottom=20mm, left=25mm, right=10mm]{geometry}
+
+% Слово "Оглавление" заглавными буквами
+\makeatletter
+\patchcmd{\@cftmaketoctitle}{\cfttoctitlefont\contentsname}{\cfttoctitlefont\MakeUppercase{\contentsname}}{}{}
+\makeatother
+
+% Код
+\usepackage{listings}
+\lstset{
+    basicstyle=\small\ttfamily, % Размер и тип шрифта
+    breaklines=true, % Перенос строк
+    tabsize=2, % Размер табуляции
+    literate={--}{{-{}-}}2, % Корректно отображать двойной дефис
+    captionpos=b
+}
+
+% Красивый маркер ненумерованного списка в виде тире
+\def\labelitemi{--}
+
+% Enumeration
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
+\setlist[itemize]{itemsep=0ex}
+
+% Полуторный межстрочный интервал 
+\usepackage[nodisplayskipstretch]{setspace}
+\onehalfspacing
+
+% Times New Roman
+\usepackage{pscyr}
+\renewcommand{\rmdefault}{ftm}
+
+% Каждый пунтк оглавления с отточием
+\usepackage{titletoc}
+
+% Абзацный отступ равен 1.25 см
+\parindent=1.25cm
+
+% Номер страницы по середине верхнего поля
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Добавить абзацный отступ для первых абзацев в section/subsection,
+% по умолчанию не добавляется
+\usepackage{indentfirst}
+
+% Обязательно переносить слова, чтобы соблюсти поля документа. Для
+% соблюдения полей можно пренебречь правилами для тех слов и
+% словосочетаний, о которых не знают словаря переносов (ruhyphen или
+% ruenhyph). Оно почему-то работает. Взято с:
+%
+%   http://www.latex-community.org/forum/viewtopic.php?p=70342#p70342
+%
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\vfuzz \hfuzz
+\raggedbottom
+
+
+\addto\captionsrussian{
+% подпись "Рисунок" вместо "Рис"
+  \def\figurename{{Рисунок}}
+% "Оглавление" вместо "Содержание"
+%  \def\figurename{{Оглавление}}
+}
+
+% Формат заголовков
+%   - Заголовок раздела по центру, кернингом побольше (отсебятина),
+%     прописными буквами, выделено жирным, X   ЗАГОЛОВОК
+%   - Заголовок подраздела и "пункта" со смещением, как у абзаца, по
+%     левому краю, выделено жирным, X.Y[.Z]   Заголовок
+\usepackage{titlesec}
+\titleformat{\section}[block]{\centering\bfseries\large}
+                         {\arabic{section}}{1ex}{\MakeUppercase}
+\titleformat{\subsection}[block]{\hspace{\parindent}\bfseries\normalsize}
+                         {\arabic{section}.\arabic{subsection}}{1ex}{}
+\titleformat{\subsubsection}[block]{\hspace{\parindent}\bfseries\normalsize}
+                         {\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{1ex}{}
+
+
+% TODO: 14pt * 3 = 42pt (три интервала до и после)
+\titlespacing*{\section} {0pt}{42pt}{42pt}
+
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{unsrtnat}
+
+\begin{document}
+\setcounter{figure}{0}
+
+    \tableofcontents
+	% Введение
+	%\input{intro.tex}
+
+
+	% Chapter 1: сревнение с другими штуками
+	\newpage
+
+	\input{qdisc-descr.tex}
+
+	% Chapter 2: исследование CBWFQ в системах моделирования
+	%\input{chapter_2.tex}
+
+	% Chapter 3: описание реализации
+	\newpage
+	\input{implement.tex}
+
+	% Заключение
+	%\input{concl.tex}
+
+	% Список литературы
+	% TODO: bibtex
+    \renewcommand{\refname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+    \addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+    %\bibliographystyle{unsrtnat}
+    \bibliography{bibl}
+\end{document}

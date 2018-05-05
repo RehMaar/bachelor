@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage[utf8] {inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian] {babel}
+% Times New Roman
+\usepackage{pscyr}
+\renewcommand{\rmdefault}{ftm}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[sibling distance=5cm,
+                    level 1/.style={sibling distance=6.5cm},
+                    level 2/.style={sibling distance=3.3cm},
+                    root/.style ={draw, rectangle,fill=blue!20},
+                    fst/.style = {draw, rectangle,fill=red!20},
+                    leaves/.style = {draw, rectangle,fill=green!20} ]
+    \node[root] {Канал (10Mbps)}
+        child { node[fst] {Интеракт (70\%)}
+            child { node[leaves] {Аудио (20\%)}}
+            child { node[leaves] {Видео (50\%)}}
+        }
+        child { node[fst] {Другое (30\%)}
+            child { node[leaves] {ftp (20\%)}}
+            child { node[leaves] {telnet (10\%)}}
+        }
+    ;
+\end{tikzpicture}
+\end{document}

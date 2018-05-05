@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian] {babel}
+% Times New Roman
+\usepackage{pscyr}
+\renewcommand{\rmdefault}{ftm}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows,decorations.markings}
+
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
+
+
+\begin{document}
+    \tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+        text width=7.5em,inner sep=0pt, minimum height=6em,minimum width=6em,text centered]
+    \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+        text width=9em, text centered, rounded corners, minimum height=4em]
+
+    \begin{tikzpicture}
+		\node[block]    (in)    at (1,10)  {{\bf{\large N-ый пакет}}}; 
+		\node[decision] (hqo)   at (5,10)  {{\bf{\large N > HQO}}};
+		\node[decision] (cdt)   at (11,10) {{\bf{\large N > CDT}}};
+		\node[decision] (enq)   at (15,10) {{\bf{\large В очередь}}};
+		\node[decision] (WFT1)  at (5,6)   {{\bf{\large Самое худшее finish time?}}};
+		\node[decision] (WFT2)  at (11,6)  {{\bf{\large Самое худшее finish time?}}};
+		\node[block]    (dropW) at (5,2)   {{\bf{\large Выбросить пакет с худшим временем и добавить новый пакет.}}}; 
+		\node[block]    (drop)  at (8,4.4) {{\bf{\large Откинуть пакет с худшим временем.}}}; 
+
+		\node[circle,draw]		    (WFT1y) at (8,6) {};
+		\node[circle,draw]		    (WFT2n) at (15,6) {};
+		\node[circle,draw]		    (dropE) at (15,2) {};
+		\node[circle,draw]		    (dropD) at (8,2) {};
+
+		\draw[vecArrow] (in)  --  (hqo);
+		\draw[vecArrow] (hqo) -- node[midway,auto] {Нет} (cdt);
+		\draw[vecArrow] (cdt) -- node[midway,auto] {Нет} (enq);
+		\draw[vecArrow] (hqo) -- node[midway,auto] {Да} (WFT1);
+		\draw[vecArrow] (cdt) -- node[midway,auto] {Да} (WFT2);
+		\draw[vecArrow] (WFT1) -- node[midway,auto] {Нет} (dropW);
+		\draw[vecArrow] (WFT1) -- node[midway,auto] {Да} (WFT1y);
+		\draw[vecArrow] (WFT1y) -- (drop);
+		\draw[vecArrow] (WFT2) -- node[midway,auto] {Да} (WFT1y);
+		\draw[vecArrow] (WFT2) -- node[midway,auto] {Нет} (WFT2n);
+		\draw[vecArrow] (WFT2n) -- (enq);
+		\draw[vecArrow] (dropW) -- (dropD);
+		\draw[vecArrow] (dropD) -- (dropE);
+		\draw[vecArrow] (dropD) -- (drop);
+		\draw[vecArrow] (dropE) -- (WFT2n);
+    \end{tikzpicture}
+\end{document}

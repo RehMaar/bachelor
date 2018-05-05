@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+
+    \begin{tikzpicture}[sibling distance=10em,
+						every node/.style = {shape = circle, draw, minimum width=1.2cm, color=blue}]
+		\node {root}
+			child { node {filter}
+				child { node {TBF}}
+				child { node {TBF}}
+			}
+			child { node {filter}
+				child { node {TBF}}
+			}
+		;
+	\end{tikzpicture}
+
+\end{document}
