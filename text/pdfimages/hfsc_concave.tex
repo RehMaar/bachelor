@@ -10,14 +10,11 @@
 \begin{document}
 
 	\begin{tikzpicture}
-      %\draw[->] (0, 0) -- (5,0) node[right] {t};
-      %\draw[->] (0, 0) -- (0,5) node[above] {service};
-	  %\draw[thick,color=red] (0,0) -- node[auto] {$m_1$} (2,0);
-	  %\draw[thick,color=red] (2,0) -- node[auto] {$m_2$} (4.6,4.6);
-      \draw[->] (6, 0) -- (6,5) node[above] {service};
+      \draw[->] (6, 0) -- (6,5) node[above] {Обслуживание};
       \draw[->] (6, 0) -- (11, 0) node[right] {t};
 	  \draw[thick,color=red] (6,0) -- node[auto] {$m_1$} (7.3,2);
 	  \draw[thick,color=red] (7.3,2) -- node[auto] {$m_2$} (10,4);
+	  \draw[thick, dashed] (7.3, 0) -- node[pos = -0.1] {$d$} (7.3, 2);
 	\end{tikzpicture}
 
 \end{document}

@@ -8,6 +8,9 @@
 \usepackage{a4wide,longtable,amsmath,amsfonts,tikz}
 % Таблицы
 \usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multicol}
+
 %Псевдокод
 \usepackage{algpseudocode}
 % Гиперссылки
@@ -123,27 +126,36 @@
 
 \begin{document}
 \setcounter{figure}{0}
+\newcommand{\mc}[0]{\makecell}
+\newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
+\newcommand\clearrow{\global\let\rowmac\relax}
+\clearrow
 
-    \tableofcontents
+   \tableofcontents
+
 	% Введение
-	%\input{intro.tex}
+	\newpage
+	\input{intro.tex}
 
 
 	% Chapter 1: сревнение с другими штуками
 	\newpage
-
 	\input{qdisc-descr.tex}
 
 	% Chapter 2: исследование CBWFQ в системах моделирования
-	%\input{chapter_2.tex}
+	\newpage
+	\input{experiments.tex}
 
-	% Chapter 3: описание реализации
+	% Chapter 2: Описание реализации и тестирования
 	\newpage
 	\input{implement.tex}
 
-	% Заключение
-	%\input{concl.tex}
 
+	% Заключение
+	\newpage
+	\input{concl.tex}
+
+	\newpage
 	% Список литературы
 	% TODO: bibtex
     \renewcommand{\refname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
