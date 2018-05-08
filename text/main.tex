@@ -29,6 +29,8 @@
 \DeclareCaptionLabelSeparator{emdash}{ --- }
 \captionsetup{labelsep=emdash}
 \captionsetup{compatibility=false}
+\setlength{\intextsep}{10mm}
+
 
 % Правильные поля для диплома
 \usepackage[top=20mm, bottom=20mm, left=25mm, right=10mm]{geometry}
@@ -40,12 +42,20 @@
 
 % Код
 \usepackage{listings}
-\lstset{
+\lstset {
     basicstyle=\small\ttfamily, % Размер и тип шрифта
     breaklines=true, % Перенос строк
     tabsize=2, % Размер табуляции
     literate={--}{{-{}-}}2, % Корректно отображать двойной дефис
     captionpos=b
+}
+\lstdefinestyle{tcstyle}{emph={tc, qdisc, class, dev, parent, classid, filter,
+							   protocol, flowid, cbwfq, default, bandwidth},
+						 emphstyle = {\bfseries},
+                         numbers=left,
+                         stepnumber=1,    
+                         firstnumber=1,
+                         numberfirstline=true
 }
 
 % Красивый маркер ненумерованного списка в виде тире
@@ -143,8 +153,8 @@
 	\input{qdisc-descr.tex}
 
 	% Chapter 2: исследование CBWFQ в системах моделирования
-	\newpage
-	\input{experiments.tex}
+	%\newpage
+	%\input{experiments.tex}
 
 	% Chapter 2: Описание реализации и тестирования
 	\newpage
