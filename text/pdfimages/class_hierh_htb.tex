@@ -4,14 +4,15 @@
 \begin{document}
 
     \begin{tikzpicture}[sibling distance=10em,
-						every node/.style = {shape = circle, draw, minimum width=1.2cm, color=blue}]
-		\node {root}
-			child { node {filter}
-				child { node {TBF}}
-				child { node {TBF}}
+						edge from parent/.append style = {line width = 0.1em},
+						every node/.style = {shape = circle, draw, minimum width=1.2cm, color=blue, line width = 0.1em}]
+		\node {\bf root}
+			child { node {\bf filter}
+				child { node {\bf TBF}}
+				child { node {\bf TBF}}
 			}
-			child { node {filter}
-				child { node {TBF}}
+			child { node {\bf filter}
+				child { node {\bf TBF}}
 			}
 		;
 	\end{tikzpicture}

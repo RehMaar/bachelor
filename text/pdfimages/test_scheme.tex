@@ -32,21 +32,22 @@
     \begin{scope}[x = (-m.east), y = (-m.north)]
       % filling the lower part
       \path[pic actions, draw = none]
-        ([yshift=2\pgflinewidth]-0.1,-1) -- (-0.1,-1.3) -- (-1,-1.3) --
-        (-1,-2.4) -- (1,-2.4) -- (1,-1.3) -- (0.1,-1.3) --
+        ([yshift=2\pgflinewidth]-0.1,-1) -- (-0.1,-1.7) -- (-1,-1.7) --
+        (-1,-2) -- (1,-2) -- (1,-1.7) -- (0.1,-1.7) --
         ([yshift=2\pgflinewidth]0.1,-1);
       % filling the border of the lower part
       \path[ut]
-        (-1,-2.4) rectangle (1,-1.3)
-        (-0.9,-1.4) -- (-0.7,-2.3) -- (0.7,-2.3) -- (0.9,-1.4) -- cycle;
-      % drawing the frame of the whole computer
-      \path[pic actions, fill = none]
-        (-1,1) -- (-1,-1) -- (-0.1,-1) -- (-0.1,-1.3) -- (-1,-1.3) --
-        (-1,-2.4) coordinate(sw)coordinate[pos=0.5] (-b west) --
-        (1,-2.4) -- (1,-1.3) coordinate[pos=0.5] (-b east) --
-        (0.1,-1.3) -- (0.1,-1) -- (1,-1) -- (1,1) -- cycle;
+        (-1,-2) rectangle (1,-1.7)
+        (-0.9,-1.8) -- (-0.7,-1.9) -- (0.7,-1.9) -- (0.9,-1.8); % -- cycle;
+		
+       %drawing the frame of the whole computer
+      \path[pic actions, fill = none, line width=0.07em ]
+        (-1,1) -- (-1,-1) -- (-0.1,-1) -- (-0.1,-1.7)-- (-1,-1.7) --
+        (-1,-2) coordinate(sw)coordinate[pos=0.5] (-b west) --
+        (1,-2) -- (1,-1.7) coordinate[pos=0.5] (-b east) --
+        (0.1,-1.7) -- (0.1,-1) -- (1,-1) -- (1,1) -- cycle;
       % node around the whole computer
-      \node(-c) [fit = (sw)(-m.north east), inner sep = 0pt] {};
+      %\node(-c) [fit = (sw)(-m.north east), inner sep = 0pt] {};
     \end{scope}
   }
 }
@@ -87,10 +88,10 @@
 	\node (c3) at (9,-.5) {};
 
 	\node at (0, 0) {{\footnotesize \textbf{Источник}}};
-	\node at (5.2, 0) {{\footnotesize \textbf{Узел}}};
+	\node at (5.2, 0) {{\footnotesize \textbf{CBWFQ}}};
 	\node at (10, 0){{\footnotesize \textbf{Цель}}};
 
-	\draw[vecArrow] (c0) -- node[text width = 3cm] {\textbf{Трафик к\\ промежуточному узлу \\ с CBWFQ}} (c1);
+	\draw[vecArrow] (c0) -- node[text width = 3cm] {\textbf{Трафик к\\ целевому узлу}} (c1);
 	\draw[vecArrow] (c2) -- node[pos=.2,text width=1cm] {\textbf{Обработанный\\ трафик}} (c3);
 
 \end{tikzpicture}

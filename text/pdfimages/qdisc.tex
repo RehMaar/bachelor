@@ -21,22 +21,23 @@
 
 \begin{document}
 \begin{tikzpicture}[sibling distance=1cm,
-                    root/.style ={draw, rectangle,fill=blue!20,text width=7em,
+                    root/.style ={draw, line width = 0.07em, rectangle,fill=gray!30,text width=7em,
 								  text centered, rounded corners, minimum height=4em}]
-	\node[root] (a) at (4,0) {Forwarding};
-	\node[root] (b) at (0,0) {Входящая очередь (ingress)};
-	\node[root] (b1) at (0,-2) {Выходной интерфейс};
-	\node[root] (c) at (4,3) {Обоработка пакетов};
-	\node[root] (d) at (8, 0) {Выходная очередь (egress)};
-	\node[root] (f) at (8, -2) {Выходной интерфейс};
+	\node[draw, line width = 0.2em, red!90, rectangle, fill=none, rounded corners, minimum height=5em, minimum width = 8.6em] (dd) at (8, 0) {};
+	\node[root] (a)  at (4,0)   {\bf Forwarding};
+	\node[root] (b)  at (0,0)   {\bf Входная очередь (ingress)};
+	\node[root] (b1) at (0,-2)  {\bf Входной интерфейс};
+	\node[root] (c)  at (4,3)   {\bf Обоработка пакетов};
+	\node[root] (d)  at (8, 0)  {\bf Выходная очередь (egress)};
+	\node[root] (f)  at (8, -2) {\bf Выходной интерфейс};
 
 
 	\draw[vecArrow] (b1) -- (b);
 	\draw[vecArrow] (b) -- (a);
 	\draw[vecArrow] (c) -- (a);
 	\draw[vecArrow] (b) -- (c);
-	\draw[vecArrow] (a) -- (d);
-	\draw[vecArrow] (d) -- (f);
+	\draw[vecArrow] (a) -- (dd);
+	\draw[vecArrow] (dd) -- (f);
 
 \end{tikzpicture}
 \end{document}

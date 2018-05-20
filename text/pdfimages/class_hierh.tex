@@ -4,14 +4,15 @@
 \begin{document}
 
     \begin{tikzpicture}[sibling distance=10em,
-						every node/.style = {shape = circle, draw, minimum width=1.2cm, color = blue}]
-		\node {1:1}
-			child { node {1:10}
-				child { node {10:21}}
-				child { node {10:22}}
+                       edge from parent/.append style = {line width = 0.1em}, 
+						every node/.style = {shape = circle, draw, minimum width=1.2cm, color = blue, line width = 0.1em}]
+		\node {\bf 1:1}
+			child { node {\bf 1:10}
+				child { node {\bf 10:21}}
+				child { node {\bf 10:22}}
 			}
-			child { node {1:20}
-				child { node {20:31}}
+			child { node {\bf 1:20}
+				child { node {\bf 20:31}}
 			}
 		;
 	\end{tikzpicture}

@@ -1,0 +1,38 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage[utf8] {inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian] {babel}
+% Times New Roman
+\usepackage{pscyr}
+\renewcommand{\rmdefault}{ftm}
+\usetikzlibrary{arrows,decorations.markings}
+
+
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
+\begin{document}
+
+	\begin{tikzpicture}
+
+%		\draw (5,0.3) rectangle (5.7, 4.3) node[pos=.5] {};
+%		\draw[vecArrow] (5.7, 3.25) to (6.4, 3.25);
+%		\draw[vecArrow] (5.7, 2.25) to (6.4, 2.25);
+%		\draw[vecArrow] (5.7, 1.25) to (6.4, 1.25);
+%
+%		\draw (6.4, 3) rectangle (10.2, 3.5) node[above left] {Очередь 1};
+%		\draw[fill=orange] (8.15, 3) rectangle (8.55, 3.5);
+%		\draw[fill=orange] (9.15, 3) rectangle (9.25, 3.5);
+%		\draw[fill=orange] (9.9, 3) rectangle (10.2, 3.5);
+%	\draw (11,0.3) rectangle (12, 4.3) node[pos=.5] {WFQ};
+%		\draw (13, 1.8) rectangle (14, 2.8) node[above left] {Выход};
+%		\draw[fill=blue] (13.5, 1.8) rectangle (13.6, 2.8);
+%		\draw[vecArrow] (12, 2.3) to (13, 2.3);
+%		\node[rotate=90] at (5.3, 2.4) {Классификатор};
+	\end{tikzpicture}
+
+\end{document}
