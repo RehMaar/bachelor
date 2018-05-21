@@ -34,36 +34,21 @@
 % Правильные поля для диплома
 \usepackage[top=20mm, bottom=20mm, left=25mm, right=10mm]{geometry}
 
-% Слово "Оглавление" заглавными буквами
-%\makeatletter
-%\patchcmd{\@cftmaketoctitle}{\cfttoctitlefont\contentsname}{\cfttoctitlefont\MakeUppercase{\contentsname}}{}{}
-%\makeatother
-\setlength\cftaftertoctitleskip{36pt}
-%\renewcommand{\contentsname}{\hfill\bfseries\Large Contents\hfill}   
-%\renewcommand{\cftaftertoctitle}{\hfill}
 
+\setlength\cftaftertoctitleskip{36pt}
 \addto\captionsrussian{
-% подпись "Рисунок" вместо "Рис"
   \def\figurename{{Рисунок}}
-% "Оглавление" вместо "Содержание"
-%  \def\figurename{{Оглавление}}
    \def\contentsname{{\hfill\bfseries\normalsize ОГЛАВЛЕНИЕ\hfill}}
 }
-
-
-%\renewcommand{\cfttoctitlefont}{\bfseries\hspace{0.38\textwidth}\MakeTextUppercase} % СОДЕРЖАНИЕ
-%\renewcommand{\cftsecfont}{\hspace{0pt}}            % Имена секций в содержании не жирным шрифтом
-%\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
-%\renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
 \setcounter{tocdepth}{3} 
 
-% Код
+\usepackage{xcolor}
 \usepackage{listings}
 \lstset {
-    basicstyle=\small\ttfamily, % Размер и тип шрифта
-    breaklines=true, % Перенос строк
-    tabsize=2, % Размер табуляции
-    literate={--}{{-{}-}}2, % Корректно отображать двойной дефис
+    basicstyle=\normalsize, 
+    breaklines=true,
+    tabsize=2,
+    literate={--}{{-{}-}}2,
     captionpos=b
 }
 \lstdefinestyle{tcstyle}{emph={tc, qdisc, class, dev, parent, classid, filter,
@@ -73,6 +58,26 @@
                          stepnumber=1,    
                          firstnumber=1,
                          numberfirstline=true
+}
+\newcommand{\includecode}[3]{\lstinputlisting[caption=#3, escapechar=, style=custom#1]{#2}}
+
+% Кастомный стиль подсветки для языка Си
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=none,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{black},
+  stringstyle=\color{orange!40!black},
+  numbers=left,
+  stepnumber=1,    
+  firstnumber=1,
+  numberfirstline=true
 }
 
 % Красивый маркер ненумерованного списка в виде тире
@@ -92,7 +97,8 @@
 \renewcommand{\rmdefault}{ftm}
 
 % Каждый пунтк оглавления с отточием
-\usepackage{titletoc}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 % Абзацный отступ равен 1.25 см
 \parindent=1.25cm
@@ -131,6 +137,7 @@
 %     прописными буквами, выделено жирным, X   ЗАГОЛОВОК
 %   - Заголовок подраздела и "пункта" со смещением, как у абзаца, по
 %     левому краю, выделено жирным, X.Y[.Z]   Заголовок
+\usepackage{titletoc}
 \usepackage{titlesec}
 \titleformat{\section}[block]{\centering\bfseries\normalsize}
                          {\arabic{section}}{1ex}{\MakeUppercase}
@@ -141,18 +148,18 @@
 
 
 % TODO: 14pt * 3 = 42pt (три интервала до и после)
-\titlespacing*{\section} {0pt}{42pt}{42pt}
+\titlespacing*{\section}{0pt}{42pt}{42pt}
 
 \usepackage[square,numbers]{natbib}
 \bibliographystyle{unsrtnat}
 
 \begin{document}
-\setcounter{figure}{0}
-\newcommand{\mc}[0]{\makecell}
-\newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
-\newcommand\clearrow{\global\let\rowmac\relax}
-\clearrow
-   \setcounter{page}{3}
+    \setcounter{figure}{0}
+    \newcommand{\mc}[0]{\makecell}
+    \newcommand\setrow[1]{\gdef\rowmac{#1}#1\ignorespaces}
+    \newcommand\clearrow{\global\let\rowmac\relax}
+    \clearrow
+    \setcounter{page}{3}
 
    \phantomsection
    \tableofcontents
@@ -202,19 +209,23 @@
 		\item HFSC -- Hierarchical Fair-Service Curve 
     \end{itemize}
 
+\setstretch{1.0}
 	\newpage
     \phantomsection
     \section*{ПРИЛОЖЕНИЕ A}
     \addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ A}
+        \includecode{c}{code/pkt_sched.diff}{Патч для заголовочного файла pkt\_sched.h.}
 
 	\newpage
     \phantomsection
     \section*{ПРИЛОЖЕНИЕ Б}
     \addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ Б}
+        \includecode{c}{code/q_cbwfq.c}{Модуль CBWFQ для утилиты tc.}
 
 	\newpage
     \phantomsection
     \section*{ПРИЛОЖЕНИЕ B}
     \addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ B}
+        \includecode{c}{code/sch_cbwfq.c}{Модуль CBWFQ для ядра Linux.}
 
 \end{document}
