@@ -121,30 +121,44 @@
 \begin{tikzpicture} [start chain=going below]
     % Place nodes
 	\node[cloud] (start) {Начало};
-	\node[block, below of = start, join, yshift=0.4cm] (init) {pkt := новый пакет\\ Q := дисциплина обслуживания};
-	\node[subroutine, below of = init, join, yshift=0.4cm] (class) {cl := classify(pkt)};
-	\node[decision, text width = 1.5cm, below of = class, yshift=1.4cm, join] (chklimit) {cl.len $\leq$ cl.limit};
-	\node[subroutine, text width = 3cm, below of = chklimit] (enq) {ret := enqueue(pkt)};
-	\node[decision, text width = 1.5cm, join, yshift=0.5cm] (enqok) {ret == 0};
-	\node[block, yshift = 0.5cm] (vl) {vl := pkt.len $\cdot$ Q.rate / cl.rate};
-	\node[decision, text width = 1.5cm, join,  yshift=0.5cm] (isact) {cl is active};
-	\node[block, yshift=0.5cm] (update) {cl.sn := cl.sn + vl};
-	\node[block, below of = update, join] (updatepkt) {pkt.sn := cl.sn};
-	\node[cloud, below of = updatepkt, yshift=2.5cm, join] (stop) {Stop};
+	\node[block, below of = start, join, yshift=0.4cm] (init) {Q := дисциплина обслуживания};
+	\node[subroutine, below of = init, join, yshift=0.4cm] (class) {cl := find\_min(Q)};
+	\node[subroutine, text width = 3cm, below of = class, join, yshift=.4cm] (deq) {pkt := dequeue(cl)};
+	\node[decision, text width = 1.5cm, join, yshift=1.4cm,below of = deq] (qempt) {cl.queue пуста};
+	\node[block, below of = qempt] (updsn) {cl.sn := 0};
+	\node[decision, text width = 1.5cm, join, yshift=1.0cm,  below of=updsn] (isallact) {Все классы активны};
+	\node[block, below of = isallact, yshift = -0.3cm] (updcyc) {Q.sn := pkt.sn};
+	\node[block, below of = updcyc, join] (stop) {Вернуть pkt};
+	\node[cloud, below of = stop, yshift=2.6cm, join] (end) {Конец};
+	
+	\node[block, below of = qempt, xshift = -3cm] (updsnn) {cl.sn := pkt.sn};
+	\node[block, below of = isallact, xshift = -3cm, yshift=-.3cm] (updcycn) {Q.sn := 0};
+	
 
-	\node[block, below of = isact, xshift = -4cm] (updateact) {c.sn := Q.cycle + vl};
-	\node[subroutine, below of = chklimit, xshift=-4cm] (drop) {drop(pkt)};
+	\path[line] (qempt) -| node[above right] {Нет} (updsnn);
+	\path[line] (qempt) -- node[right] {Да} (updsn);
 
-	\path[line] (chklimit) -| node[above right] {Нет} (drop);
-	\path[line] (chklimit) -- node[right] {Да} (enq);
+	\path[line] (isallact) -| node[above right] {Нет} (updcycn);
+	\path[line] (isallact) -- node[right] {Да} (updcyc);
 
-	\path[line] (enqok) -| node[below right] {Нет} (drop);
-	\path[line] (enqok) -- node[right] {Да} (vl);
+	\path[line] (updsnn) |- (isallact.north);
+	\path[line] (updcycn) |- (stop);
 
-	\path[line] (isact) -| node[above right] {Нет} (updateact);
-	\path[line] (isact) -- node[right] {Да} (update); 
+%	\path[line] (chkcl) -- node[right] {Да} (deq);
 
-	\path[line] (updateact) |- (updatepkt);
+
+%	\node[block, yshift=0.5cm] (update) {cl.sn := cl.sn + vl};
+%	\node[block, below of = update, join] (updatepkt) {pkt.sn := cl.sn};
+%	\node[cloud, below of = updatepkt, yshift=2.5cm, join] (stop) {Stop};
+%	\node[block, below of = isact, xshift = -4cm] (updateact) {c.sn := Q.cycle + vl};
+%	\node[subroutine, below of = chklimit, xshift=-4cm] (drop) {drop(pkt)};
+%	\path[line] (chklimit) -| node[above right] {Нет} (drop);
+%	\path[line] (chklimit) -- node[right] {Да} (enq);
+%	\path[line] (enqok) -| node[below right] {Нет} (drop);
+%	\path[line] (enqok) -- node[right] {Да} (vl);
+%	\path[line] (isact) -| node[above right] {Нет} (updateact);
+%	\path[line] (isact) -- node[right] {Да} (update); 
+%	\path[line] (updateact) |- (updatepkt);
 \end{tikzpicture}
 
 \end{document}
