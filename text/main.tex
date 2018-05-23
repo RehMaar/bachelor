@@ -74,10 +74,10 @@
   commentstyle=\itshape\color{purple!40!black},
   identifierstyle=\color{black},
   stringstyle=\color{orange!40!black},
-  numbers=left,
-  stepnumber=1,    
-  firstnumber=1,
-  numberfirstline=true
+  %numbers=left,
+  %stepnumber=1,    
+  %firstnumber=1,
+  %numberfirstline=true
 }
 
 % Красивый маркер ненумерованного списка в виде тире
@@ -153,6 +153,8 @@
 \usepackage[square,numbers]{natbib}
 \bibliographystyle{unsrtnat}
 
+\urlstyle{same}
+
 \begin{document}
     \setcounter{figure}{0}
     \newcommand{\mc}[0]{\makecell}
@@ -186,8 +188,10 @@
 	\input{concl.tex}
 
 	\newpage
+\begingroup
+\let\itshape\upshape
+
 	% Список литературы
-	% TODO: bibtex
     \renewcommand{\refname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
     \addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
     %\bibliographystyle{unsrtnat}
@@ -199,14 +203,20 @@
     \addcontentsline{toc}{section}{СПИСОК СОКРАЩЕНИЙ И УСЛОВНЫХ ОБОЗНАЧЕНИЙ}
 
     \begin{itemize}
-		\item ДО -- Дисциплина обслуживания.
-		\item ПС -- пропускная способность.
-    	\item CBWFQ -- Class Based Weighted Fail Queueing.
-		\item WFQ -- Weighted Fair Queueing.
-		\item PQ -- Priority Queueing.
-		\item CBQ -- Class Based Queueing.
-		\item HTB --  Hierarchical Token Bucket.
-		\item HFSC -- Hierarchical Fair-Service Curve 
+		\item ДО --- Дисциплина обслуживания.
+		\item ПС --- пропускная способность.
+    	\item CBWFQ --- Class Based Weighted Fail Queueing.
+		\item CBQ --- Class Based Queueing.
+		\item ED/AD --- Early-Detection/Aggressive-Detection.
+		\item HTB ---  Hierarchical Token Bucket.
+		\item HFSC --- Hierarchical Fair-Service Curve.
+		\item PQ --- Priority Queueing.
+		\item RT/LS --- Real-Time/Link-Sharing.
+		\item RR --- Round Robin.
+		\item TD --- Tail-Drop.
+		\item WFQ --- Weighted Fair Queueing.
+		\item WRR --- Weighted Round Robin.
+		\item WRED --- Weighted Random Early Detection.
     \end{itemize}
 
 \setstretch{1.0}
