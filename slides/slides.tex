@@ -8,6 +8,7 @@
 \usepackage{caption}
 \usepackage{listings}
 \usepackage{subcaption}
+\usepackage[export]{adjustbox}
 
 \lstset{emph={
     tc, qdisc, class, dev, parent, classid, filter, protocol, flowid, cbwfq, default, bandwidth,
@@ -55,114 +56,14 @@
     }
 \end{frame}
 
-\begin{frame}{Weighted Fair Queueing}
-	
-	\textbf{General Processor Sharing (GPS)} -- математическая модель
-	планировщика, позволяющая максимально точно разделить пропускную
-	способность между классами трафика в соответствии с назначенными
-	весами.
-
-	\textbf{WFQ} -- взвешенный алгоритм честного обслуживания,
-	представляющий собой аппрокисмацию модели GPS; он оперирует
-	пакетами, предоставляя максимально честное обслуживание,
-	которое возвомжно для данного алгоритма при работе с пакетами.
-
-\end{frame}
-
-
-\begin{frame}{WFQ на основе вычисления порядкового номера пакета}
-	\begin{figure}
-		\center
-    	\includegraphics[scale=0.7]{../text/pdfimages/wfq_seq.pdf}
-		\caption{Схема обслуживания пакетов в WFQ}
-	\end{figure}
-	
-	Порядковый номер пакета вычисляется на основе длины пакета, веса потока и
-	текущего счётчика циклов (или порядкового номера последнего обслуженного пакета в потоке).
-
-	%{\scriptsize
-	%CDT (congestive discard threshold) -- количество пакетов в системе WFQ перед началом отбрасывания.\\
-	%HQO (hold queue out) -- максимальное количество пакетов во всех выходящих очередях.
-	%}
-\end{frame}
-
-
-\begin{frame}{Flow-based Weighted Fair Queueing}
-	\begin{figure}
-		\center
-    	\includegraphics[scale=0.6]{../text/pdfimages/fwfq.pdf}
-		\caption{Схема движения пакетов в планировщике FWFQ}
-	\end{figure}
-	\begin{center}
-        {\footnotesize
-            \begin{multicols}{2}
-				{\bf Преимущества}
-				\begin{itemize}
-					\item Простая конфигурация.
-					\item Отбрасывание пакетов из агрессивных потоков.
-					\item Честное обслуживание.
-				\end{itemize}
-            \columnbreak
-				{\bf Недостатки}
-				\begin{itemize}
-					\item Нельзя разделять трафик по классам обслуживания.
-					\item Не предоставляет задание определённой пропускной способности.
-				\end{itemize}
-            \end{multicols}
-		}
-	\end{center}
-\end{frame}
-
-
-
-\begin{frame}{Class-Based Weighted Fair Queueing}
-	\begin{figure}
-		\center
-    	\includegraphics[scale=0.7]{../text/pdfimages/cbwfq.pdf}
-		\caption{Схема движения пакетов в планировщике CBWFQ}
-	\end{figure}
-
-	\begin{center}
-{\footnotesize
-            \begin{multicols}{2}
-				{\bf Преимущества}
-				\begin{itemize}
-					\item Гибкая конфигурация классов.
-					\item Выделение заданной пропускной способности для классов.
-				\end{itemize}
-            \columnbreak
-				{\bf Недостатки}
-				\begin{itemize}
-					\item Ограничение на количество пользовательских классов.
-					\item Плохо работает с интерактивным трафиком.
-				\end{itemize}
-            \end{multicols}
-}
-	\end{center}
-\end{frame}
-
 \begin{frame}{Сравнительная таблица ДО}
-%{\footnotesize
-%    \begin{tabular}{|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c<{\clearrow}|}
-%        \hline
-%\setrow{\bfseries}               Свойство     & PQ   & CBQ   & HTB   & HFSC  & FWFQ  & CBWFQ \\ \hline
-%{\bf \mc{Метод\\ планирования}   }& RR   &WRR    & RR    & RT/LS & WFQ   & WFQ   \\ \hline
-%{\bf Честность                   }& -    & -     & -     & +     &  +    &  +    \\ \hline
-%{\bf      Отбрасывание           }&{\scriptsize  TD   }&{\scriptsize  TD    }&{\scriptsize  TD    }&{\scriptsize  TD    }&{\scriptsize  ED/AD }&{\scriptsize  TD/WRED }\\ \hline
-%{\bf \mc{Разделение\\ канала}    }& -    &  +    &  +    &  +    &  -    &  -    \\ \hline
-%{\bf \mc{Сложность \\ реализации}}& {\scriptsize Низкая }& {\scriptsize Высокая     }&  {\scriptsize Средняя    }&  {\scriptsize Высокая    }&   {\scriptsize Средняя   }&  {\scriptsize Средняя}\\ \hline
-%{\bf \mc{Конфигурация\\ классов}}		  & -  & + & + & + & - & + \\ \hline
-%{\bf \mc{Реализация\\ в Linux}}   & + & + & + & + & - & -  \\ \hline
-%    \end{tabular}
-%}
-
 {\scriptsize
         \begin{tabular}{|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c|>{\rowmac}c<{\clearrow}|}
             \hline
             \setrow{\bfseries}     Свойство        & PQ   & CBQ   & HTB   & HFSC  & FWFQ  & CBWFQ \\ \hline
             {\bf \mc{Метод\\ планирования        }}& RR   & WRR   & RR    & RT/LS & WFQ   & WFQ   \\ \hline
             {\bf Отбрасывание                     }& TD   & TD    & TD    & TD    & ED/AD & TD/WRED \\ \hline
-            {\bf \mc{Честность\\(справедливость) }}& -    & -     & -     & -     &  +    &  +    \\ \hline
+            {\bf \mc{Честность}}& -    & -     & -     & -     &  +    &  +    \\ \hline
             {\bf \mc{Разделение\\ канала         }}& -    &  +    &  +    &  +    &  -    &  -    \\ \hline
 			{\bf \mc{Решение проблемы\\ голодания}}& -    &  +    & +     & +     & +     & +    \\ \hline
             {\bf \mc{Сложность \\ реализации     }}& Низк & Выс   &Сред   & Выс   & Сред  & Сред \\ \hline
@@ -173,51 +74,148 @@
 }
 {\scriptsize
 	Обозначения:
-	 RR -- Round Robin, RT/LS -- на основе Real Time/Link Sharing критериев.\\
-	 TD -- Tail Drop, ED -- Early Dropping, AD -- Aggressive Dropping.
+	 (W)RR -- (Weighted) Round Robin, RT/LS -- Real Time/Link Sharing.
+	 TD -- Tail Drop, ED/AD -- Early Dropping/Aggressive Dropping.
 }
 \end{frame}
 
+%\begin{frame}{Weighted Fair Queueing}
+%	\begin{itemize}
+%		\item Является аппрокисмацией обощённой схемы разделения процессорного времени
+%			  (Generalized Processor Sharing, GPS).
+%		\item Что-нибудь ещё про WFQ и честность. 
+%	\end{itemize}
+%
+% 	\textbf{General Processor Sharing (GPS)} -- математическая модель
+% 	планировщика, позволяющая максимально точно разделить пропускную
+% 	способность между классами трафика в соответствии с назначенными
+% 	весами.
+% 	\textbf{WFQ} -- взвешенный алгоритм честного обслуживания,
+% 	представляющий собой аппрокисмацию модели GPS; он оперирует
+% 	пакетами, предоставляя максимально честное обслуживание,
+% 	которое возвомжно для данного алгоритма при работе с пакетами.
+%\end{frame}
 
-\begin{frame}{Дисциплины обслуживания}
-	% TODO: сделать рисунок более понятным
-	\textbf{Дисциплина обслуживания (qdisc, ДО)} -- набор алгоритмов,
-	определяющий метод организации очереди, способы выбора пакета из очереди,
-	политику отбрасывания пакетов и способы выделения канала.
+
+\begin{frame}{WFQ на основе вычисления порядкового номера пакета}
 	\begin{figure}
 		\center
-    	\includegraphics[scale=0.7]{../text/pdfimages/qdisc.pdf}
+    	\includegraphics[scale=0.7]{../text/pdfimages/wfq_seq.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Class-Based Weighted Fair Queueing}
+	\begin{figure}
+		\center
+    	\includegraphics[scale=0.8]{../text/pdfimages/cbwfq.pdf}
+		\caption*{Схема движения пакетов в планировщике CBWFQ}
 	\end{figure}
 
+	\begin{center}
+{\footnotesize
+	\begin{itemize}
+		\item Гибкая конфигурация классов.
+		\item Гарантированное выделение минимальной полосы пропускания.
+	\end{itemize}
+}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}{Качество обслуживания в ядре Linux}
+	\begin{figure}
+		\center
+    	\includegraphics[scale=0.8]{../text/pdfimages/qdisc.pdf}
+		\caption*{Схема движения пакетов в ядре Linux.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Плагин для утилиты tc}
+
+	Опции для настройки дисциплины.
+	\begin{itemize}
+		\item ``bandwidth'' --- пропускная способность канала.
+		\item ``defaut''	--- ключевое слово, определяющее, что далее пойдут команды для настройки класса по умолчанию.
+
+	\end{itemize}
+~\\
+	Опции для настройки классов.
+	\begin{itemize}
+		\item ``rate'' --- минимальная пропускная способность для класса.
+		\item ``limit'' -- максимальное количество пакетов в очереди класса.
+	\end{itemize}
 
 \end{frame}
 
-\begin{frame}[fragile]{Тестирование модуля}
+
+\begin{frame}{Блок-схемы основных алгоритмов CBWFQ}
+	\begin{figure}
+		\begin{subfigure}[b]{0.4\textwidth}
+            \center
+            \includegraphics[scale=0.45,frame]{../text/pdfimages/enq_algo.pdf}%
+    		\caption*{Алгоритм enqueue}
+		\end{subfigure}
+~~~~~~~~
+		\begin{subfigure}[b]{0.4\textwidth}
+            \center%
+            \includegraphics[scale=0.5,frame]{../text/pdfimages/deq_algo.pdf}%
+    		\caption*{Алгоритм dequeue}
+		\end{subfigure}
+	\end{figure}	
+\end{frame}
+
+\begin{frame}[fragile]{Настройка тестовой среды}
 	\begin{figure}
 		\center
-    	\includegraphics[scale=0.7]{../text/pdfimages/test_scheme.pdf}
-		\caption*{{\footnotesize Схема тестовой среды}}
+    	\includegraphics[scale=0.8]{../text/pdfimages/test_scheme.pdf}
 	\end{figure}
 {\footnotesize
 	\begin{lstlisting}[frame=single]
-tc qdisc add dev eth1 cbwfq bandwidth 100Mpbs \
- default rate 30 percent
-tc class add dev eth1 parent 1: classid 1:3 \
- cbwfq rate 70 percent  
-tc filter add dev ens3 parent 1: protocol ip \
- u32 match ip sport $TESTPORT1 flowid 1:2
-
+tc qdisc add dev $IFACE root handle 1: cbwfq bandwidth \
+		100Mbps default rate 5Mbps
+tc class add dev $IFACE parent 1: classid 1:2 cbwfq \
+		 rate 25Mbps
+tc class add dev $IFACE parent 1: classid 1:3 cbwfq \
+		 rate 70Mbps
+tc filter add dev ens4 parent 1:1 protocol ip u32 match \
+        ip dport $TESTPORT1 0xffff flowid 1:2
+tc filter add dev ens4 parent 1:0 protocol ip u32 match \
+        ip dport $TESTPORT2 0xffff flowid 1:3
     \end{lstlisting}
 }
 \end{frame}
 
-\begin{frame}{Тестирование модуля}
+\begin{frame}{Структура эксперимента №1}
 	\begin{figure}
 		\center
-    	\includegraphics[scale=0.4]{../text/pdfimages/plot.pdf}
-		\caption{{\scriptsize График распределения доли пропускной способности в течение времени.}}
+    	\includegraphics[scale=0.6]{../text/pdfimages/exp_scheme.pdf}
 	\end{figure}
 \end{frame}
+
+\begin{frame}{Результат эксперимента №1, БОЛЬШЕ ШРИФТ}
+	\begin{figure}
+		\center
+    	\includegraphics[scale=0.3]{../text/plotc.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Структура эксперимента №2}
+	\begin{figure}
+		\center
+    	\includegraphics[scale=0.6]{../text/pdfimages/exp_scheme2.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Результат эксперимента №2, БОЛЛШЕ ШРИФТ}
+	\begin{figure}
+		\center
+    	\includegraphics[scale=0.28]{../text/plotnc.png}
+	\end{figure}
+\end{frame}
+
+%\begin{frame}{Тестирование модуля}
+
+%\end{frame}
 
 \begin{frame}{Вывод}
 	\begin{itemize}
