@@ -9,11 +9,17 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.markings}
 
+\definecolor{itmoblue}{RGB}{2,48,172}
 
-\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
-   1 with {\arrow[semithick]{open triangle 60}}},
+\tikzstyle{vecArrow} = [itmoblue,thick, decoration={markings,
+   mark=at position 1 with {\arrow[itmoblue,semithick]{open triangle 60}}},
    double distance=1.4pt, shorten >= 5.5pt,
-   preaction = {decorate},
+   preaction = {decorate,itmoblue},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+\tikzstyle{vecArrowRed} = [red,thick, decoration={markings,
+   mark=at position 1 with {\arrow[red,semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate,red},
    postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
 \tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
 
@@ -21,23 +27,24 @@
 
 \begin{document}
 \begin{tikzpicture}[sibling distance=1cm,
-                    root/.style ={draw, line width = 0.07em, rectangle,fill=gray!30,text width=7em,
+                    root/.style ={draw, line width = 0.07em, rectangle,text width=7em,
 								  text centered, rounded corners, minimum height=4em}]
 	\node[draw, line width = 0.2em, red!90, rectangle, fill=none, rounded corners, minimum height=5em, minimum width = 8.6em] (dd) at (8, 0) {};
-	\node[root] (a)  at (4,0)   {\bf Forwarding};
-	\node[root] (b)  at (0,0)   {\bf Входная очередь (ingress)};
-	\node[root] (b1) at (0,-2)  {\bf Входной интерфейс};
-	\node[root] (c)  at (4,3)   {\bf Обоработка пакетов};
-	\node[root] (d)  at (8, 0)  {\bf Выходная очередь (egress)};
-	\node[root] (f)  at (8, -2) {\bf Выходной интерфейс};
+	\node[itmoblue,root] (a)  at (4,0)   {\bf Forwarding};
+	\node[itmoblue,root] (b)  at (0,0)   {\bf Входная очередь (ingress)};
+	\node[itmoblue,root] (b1) at (0,-2)  {\bf Входной интерфейс};
+	\node[itmoblue,root] (c)  at (4,3)   {\bf Обоработка пакетов};
+	\node[itmoblue,root] (d)  at (8, 0)  {\bf Выходная очередь (egress)};
+	\node[itmoblue,root] (f)  at (8, -2) {\bf Выходной интерфейс};
 
+	%\node[text width=2.5cm, text=red]itmoblue (txt) at (8, 2) {\bf Дисциплина обслуживания};
 
-	\draw[vecArrow] (b1) -- (b);
-	\draw[vecArrow] (b) -- (a);
-	\draw[vecArrow] (c) -- (a);
-	\draw[vecArrow] (b) -- (c);
-	\draw[vecArrow] (a) -- (dd);
-	\draw[vecArrow] (dd) -- (f);
+	\draw[itmoblue,vecArrow] (b1) -- (b);
+	\draw[itmoblue,vecArrow] (b) -- (a);
+	\draw[itmoblue,vecArrow] (c) -- (a);
+	\draw[itmoblue,vecArrow] (b) -- (c);
+	\draw[itmoblue,vecArrow] (a) -- (dd);
+	\draw[itmoblue,vecArrow] (dd) -- (f);
 
 \end{tikzpicture}
 \end{document}

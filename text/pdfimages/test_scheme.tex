@@ -91,8 +91,14 @@
 	\node at (5.2, 0) {{\footnotesize \textbf{CBWFQ}}};
 	\node at (10, 0){{\footnotesize \textbf{Цель}}};
 
-	\draw[vecArrow] (c0) -- node[text width = 3cm] {\textbf{Трафик к\\ целевому узлу}} (c1);
-	\draw[vecArrow] (c2) -- node[pos=.2,text width=1cm] {\textbf{Обработанный\\ трафик}} (c3);
+	%\draw[vecArrow] (c0) -- node[text width = 3cm] {\textbf{Трафик к\\ целевому узлу}} (c1);
+	%\draw[vecArrow] (c2) -- node[pos=.2,text width=1cm] {\textbf{Обработанный\\ трафик}} (c3);
+
+	\draw[vecArrow] (c0) -- node[above] {\textbf{1Gbps}} (c1);
+	\draw[vecArrow] (c2) -- node[above] {\textbf{100Mbps}} (c3);
+
+	%\node at (2,   0)   {\bf (1Gb)};
+	%\node at (7.5, 0) {\bf (100Mbps)};
 
 \end{tikzpicture}
 \end{document}

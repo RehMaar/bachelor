@@ -10,6 +10,7 @@
 \usetikzlibrary{shapes.arrows}
 \usetikzlibrary{shapes,snakes}
 
+\definecolor{itmoblue}{RGB}{2,48,172}
 
 \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
    1 with {\arrow[semithick]{open triangle 60}}},
@@ -20,21 +21,21 @@
 \begin{document}
 
 	\begin{tikzpicture}
-		\draw[red!20,fill=red!20]   (-3, 1.5) rectangle (5, 3) node [black,below left] {{\bf Класс: 1:2; Скорость: 500Mbps}};
-		\draw[blue!20,fill=blue!20] (-3, 0) rectangle (5, 1.5) node [black, below left] {{\bf Класс: 1:3; Скорость: 500Mpbs}};
+		\draw[red!30,fill=red!30]   (-3, 1.5) rectangle (5, 3) node [black,below left] {{\bf Класс: 1:2; Скорость: 500Mbps}};
+		\draw[green!30,fill=green!30] (-3, 0) rectangle (5, 1.5) node [black, below left] {{\bf Класс: 1:3; Скорость: 500Mpbs}};
 		\draw[line width = 0.4mm] (-3,0) rectangle (5, 3) node [above left] {{\bf Скорость: 1Gbps}};
 
-		\draw[fill=gray!30, line width = 0.4mm] (5, -2) rectangle (7, 5.4);
+		\draw[fill=itmoblue!30, line width = 0.4mm] (5, -2) rectangle (7, 5.4);
 		\node[rotate = 90] at (6, 1.5) {{\LARGE {\bf CBWFQ}}};
 
-		\draw[red!20,fill=red!20]   (7, 1) rectangle (14, 3) node [black,below left] {{\bf Класс: 1:2; Скорость: 70Mbps}};
-		\draw[blue!20,fill=blue!20] (7, 0) rectangle (14, 1) node [black, below left] {{\bf Класс: 1:3; Скорость: 30Mpbs}};
+		\draw[red!30,fill=red!30]   (7, 1) rectangle (14, 3) node [black,below left] {{\bf Класс: 1:2; Скорость: 70Mbps}};
+		\draw[green!30,fill=green!30] (7, 0) rectangle (14, 1) node [black, below left] {{\bf Класс: 1:3; Скорость: 30Mpbs}};
 		\draw[line width = 0.4mm]   (7,0) rectangle  (14, 3) node[above left] {{\bf Скорость: 100Mbps}};
 
-		\node[gray!20, fill=gray!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (1, -1) {};
-		\node[gray!20, fill=gray!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (1, 4.5) {};
-		\node[gray!20, fill=gray!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (11, 4.5) {};
-		\node[gray!20, fill=gray!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (11, -1) {};
+		\node[itmoblue!20, fill=itmoblue!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (1, -1) {};
+		\node[itmoblue!20, fill=itmoblue!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (1, 4.5) {};
+		\node[itmoblue!20, fill=itmoblue!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (11, 4.5) {};
+		\node[itmoblue!20, fill=itmoblue!20, single arrow, draw, minimum height = 7.5cm, minimum width = 1.5cm] at (11, -1) {};
 
 %		\draw (10, 1) rectangle (14, 3.5);
 %		\draw (0, -1) rectangle (5, 0.5);

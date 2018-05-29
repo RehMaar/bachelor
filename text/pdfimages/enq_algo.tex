@@ -120,17 +120,18 @@
 \begin{document}
 \begin{tikzpicture} [start chain=going below]
     % Place nodes
+	\draw (-7,-13.5) rectangle (5,0.5);
 	\node[cloud] (start) {Начало};
 	\node[block, below of = start, join, yshift=0.4cm] (init) {pkt := новый пакет\\ Q := дисциплина обслуживания};
 	\node[subroutine, below of = init, join, yshift=0.4cm] (class) {cl := classify(pkt)};
-	\node[decision, text width = 1.5cm, below of = class, yshift=1.4cm, join] (chklimit) {cl.len $\leq$ cl.limit};
+	\node[decision, text width = 1.5cm, below of = class, yshift=1.6cm, join] (chklimit) {cl.len $\leq$ cl.limit};
 	\node[subroutine, text width = 3cm, below of = chklimit] (enq) {ret := enqueue(pkt)};
-	\node[decision, text width = 1.5cm, join, yshift=0.5cm] (enqok) {ret == 0};
+	\node[decision, text width = 1.5cm, join, yshift=0.6cm] (enqok) {ret == 0};
 	\node[block, yshift = 0.5cm] (vl) {vl := pkt.len $\cdot$ Q.rate / cl.rate};
-	\node[decision, text width = 1.5cm, join,  yshift=0.5cm] (isact) {cl is active};
+	\node[decision, text width = 1.5cm, join,  yshift=0.6cm] (isact) {cl активен};
 	\node[block, yshift=0.5cm] (update) {cl.sn := cl.sn + vl};
-	\node[block, below of = update, join] (updatepkt) {pkt.sn := cl.sn};
-	\node[cloud, below of = updatepkt, yshift=2.5cm, join] (stop) {Stop};
+	\node[block, below of = update, join,yshift=.6cm] (updatepkt) {pkt.sn := cl.sn};
+	\node[cloud, below of = updatepkt, yshift=2.9cm, join] (stop) {Конец};
 
 	\node[block, below of = isact, xshift = -4cm] (updateact) {c.sn := Q.cycle + vl};
 	\node[subroutine, below of = chklimit, xshift=-4cm] (drop) {drop(pkt)};

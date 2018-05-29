@@ -8,9 +8,10 @@
 \renewcommand{\rmdefault}{ftm}
 \usetikzlibrary{arrows,decorations.markings}
 
+\definecolor{itmoblue}{RGB}{2,48,172}
 
-\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
-   1 with {\arrow[semithick]{open triangle 60}}},
+\tikzstyle{vecArrow} = [itmoblue, thick,
+  decoration={markings,mark=at position 1 with {\arrow[itmoblue, semithick]{open triangle 60}}},
    double distance=1.4pt, shorten >= 5.5pt,
    preaction = {decorate},
    postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
@@ -19,57 +20,57 @@
 
 	\begin{tikzpicture}
  		%\draw (0.7, 0.1) rectangle (14.1, 4.5);
-		\draw (0.8, 2.6) rectangle (4.5, 2);
-		\draw[vecArrow] (4.5, 2.25) to (5, 2.25);
-		\draw[fill=orange] (4.1, 2.6) rectangle  (4.4 ,2);
-		\draw[fill=green]  (3.9 , 2.6) rectangle (4.06 , 2);
-		\draw[fill=blue]   (3.6 , 2.6) rectangle (3.87 , 2);
-		\draw[fill=orange] (3.45,2.6) rectangle  (3.55,2);
-		\draw[fill=yellow] (3.0 , 2.6) rectangle (3.4 , 2);
-		\draw[fill=green]  (2.8 , 2.6) rectangle (2.95,2);
-		\draw[fill=orange] (2.35,2.6) rectangle  (2.75,2);
-		\draw[fill=blue]   (1.9 , 2.6) rectangle (2.3 , 2);
-		\draw[fill=green]  (1.6 , 2.6) rectangle (1.8 , 2);
-		\draw[fill=yellow] (1.4 , 2.6) rectangle (1.5 , 2);
-		\draw[fill=yellow] (0.9 , 2.6) rectangle (1.3 , 2);
+		\draw[vecArrow] (4.5, 2.3) to (5, 2.3);
+		\draw[fill=violet!80] (4.1, 2.6) rectangle  (4.4 ,2);
+		\draw[fill=gray!80]  (3.9 , 2.6) rectangle (4.06 , 2);
+		\draw[fill=red!80]   (3.6 , 2.6) rectangle (3.87 , 2);
+		\draw[fill=violet!80] (3.45,2.6) rectangle  (3.55,2);
+		\draw[fill=cyan!80] (3.0 , 2.6) rectangle (3.4 , 2);
+		\draw[fill=gray!80]  (2.8 , 2.6) rectangle (2.95,2);
+		\draw[fill=violet!80] (2.35,2.6) rectangle  (2.75,2);
+		\draw[fill=red!80]   (1.9 , 2.6) rectangle (2.3 , 2);
+		\draw[fill=gray!80]  (1.6 , 2.6) rectangle (1.8 , 2);
+		\draw[fill=cyan!80] (1.4 , 2.6) rectangle (1.5 , 2);
+		\draw[fill=cyan!80] (0.9 , 2.6) rectangle (1.3 , 2);
+		\draw[itmoblue, line width=1pt] (0.8, 2.6) node[above right]{\bf Входящий трафик} rectangle (4.5, 2);
 
 		% Classifier
-		\draw (5,0.3) rectangle (5.7, 4.3);
 		\draw[vecArrow] (5.7, 3.25) to (6.4, 3.25);
 		\draw[vecArrow] (5.7, 2.25) to (6.4, 2.25);
 		\draw[vecArrow] (5.7, 1.25) to (6.4, 1.25);
+		\draw[itmoblue,line width=1pt] (5,0.3) rectangle (5.7, 4.3);
 
 		% Q1
-		\draw (6.4, 3) rectangle (10.2, 3.5) node[above left] {{ Очередь 1}};
-		\draw[fill=orange] (8.15, 3) rectangle (8.55, 3.5);
-		\draw[fill=orange] (9.15, 3) rectangle (9.25, 3.5);
-		\draw[fill=orange] (9.9, 3) rectangle (10.2, 3.5);
+		\draw[fill=violet!80] (8.15, 3) rectangle (8.55, 3.5);
+		\draw[fill=violet!80] (9.15, 3) rectangle (9.25, 3.5);
+		\draw[fill=violet!80] (9.9, 3) rectangle (10.2, 3.5);
+		\draw[itmoblue,line width=1pt]  (6.4, 3) rectangle (10.2, 3.5) node[above left] {{\bf Очередь 1}};
 
 		% Q2
-		\draw (6.4, 2) rectangle (10.2, 2.5) node[above left] {{ Очередь 2}};
-		\draw[fill=green] (7.4, 2) rectangle (7.6,   2.5);
-		\draw[fill=green] (8.6, 2) rectangle (8.75, 2.5);
-		\draw[fill=green] (9.6, 2) rectangle (9.8, 2.5);
+		\draw[fill=gray!80] (7.4, 2) rectangle (7.6,   2.5);
+		\draw[fill=gray!80] (8.6, 2) rectangle (8.75, 2.5);
+		\draw[fill=gray!80] (9.6, 2) rectangle (9.8, 2.5);
+		\draw[itmoblue,line width=1pt]  (6.4, 2) rectangle (10.2, 2.5) node[above left] {{\bf Очередь 2}};
 
 		% Default
-		\draw (6.4, 1) rectangle (10.2, 1.5) node[above left] {{ Очередь по-умолчанию}};
-		\draw[fill=yellow]  (6.6, 1) rectangle (7,   1.5);
-		\draw[fill=yellow] (7.3, 1) rectangle (7.4, 1.5);
-		\draw[fill=blue]   (7.7, 1) rectangle (8.1, 1.5);
-		\draw[fill=yellow] (8.8, 1) rectangle (9.2, 1.5);
-		\draw[fill=blue]   (9.3, 1) rectangle (9.6, 1.5);
+		\draw[fill=cyan!80]  (6.6, 1) rectangle (7,   1.5);
+		\draw[fill=cyan!80] (7.3, 1) rectangle (7.4, 1.5);
+		\draw[fill=red!80]   (7.7, 1) rectangle (8.1, 1.5);
+		\draw[fill=cyan!80] (8.8, 1) rectangle (9.2, 1.5);
+		\draw[fill=red!80]   (9.3, 1) rectangle (9.6, 1.5);
+		\draw[itmoblue,line width=1pt]  (6.4, 1) rectangle (10.2, 1.5) node[above left] {{\bf Очередь по-умолчанию}};
 
 		\draw[vecArrow] (10.2, 3.25) to (11, 3.25);
 		\draw[vecArrow] (10.2, 2.25) to (11, 2.25);
 		\draw[vecArrow] (10.2, 1.25) to (11, 1.25);
 
-		\draw (11,0.3) rectangle (12, 4.3) node[pos=.5] {{ WFQ}};
+		\draw[itmoblue,line width=1pt] (11,0.3) rectangle (12, 4.3) node[pos=.5] {{\bf WFQ}};
 
 		% Out
-		\draw (13, 1.8) rectangle (14, 2.8) node[above left] {{ Выход}};
-		\draw[fill=blue] (13.5, 1.8) rectangle (13.6, 2.8);
+		\draw[fill=cyan] (13.5, 1.8) rectangle (13.6, 2.8);
 		\draw[vecArrow] (12, 2.3) to (13, 2.3);
-		\node[rotate=90] at (5.35, 2.4) {{ Классификатор}};
+		\draw[itmoblue,line width=1pt] (13, 1.8) rectangle (14, 2.8) node[above left] {{\bf Выход}};
+		\node[itmoblue,rotate=90] at (5.35, 2.4) {{\bf Классификатор}};
 	\end{tikzpicture}
 
 \end{document}
